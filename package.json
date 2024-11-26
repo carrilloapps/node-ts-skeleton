@@ -1,0 +1,111 @@
+{
+  "name": "nodets",
+  "version": "1.0.0",
+  "description": "A Node.js project skeleton using TypeScript, set up with testing, linting, and development automation tools.",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepare": "husky",
+    "build": "rimraf dist && tsc",
+    "start": "npm run build && node dist/index.js",
+    "start:dev": "nodemon --exec ts-node -r tsconfig-paths/register src/index.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:report": "jest --coverage --coverageReporters=\"json-summary\"",
+    "lint": "eslint . --ext .ts,.js --fix"
+  },
+  "author": {
+    "name": "Junior Carrillo",
+    "email": "soyjrcarrillo@gmail.com",
+    "url": "https://github.com/soyjrcarrillo"
+  },
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soyjrcarrillo/nodets.git"
+  },
+  "keywords": [
+    "node",
+    "typescript",
+    "jest",
+    "eslint",
+    "express",
+    "skeleton"
+  ],
+  "bugs": {
+    "url": "https://github.com/soyjrcarrillo/nodets/issues"
+  },
+  "homepage": "https://github.com/soyjrcarrillo/nodets#readme",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s",
+      "!**/index.(t|j)s",
+      "!**/app.(t|j)s",
+      "!**/main.(t|j)s",
+      "!**/app.swagger.(t|j)s",
+      "!**/app.schema.(t|j)s",
+      "!**/app.logger.(t|j)s",
+      "!**/app.env.(t|j)s",
+      "!**/*.module.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/$1",
+      "^app/(.*)$": "<rootDir>/app/$1",
+      "^test/(.*)$": "<rootDir>/test/$1"
+    }
+  },
+  "dependencies": {
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.1",
+    "dotenv": "^16.4.5",
+    "joi": "^17.13.3",
+    "supertest": "^7.0.0",
+    "winston": "^3.14.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^20.4.0",
+    "@types/supertest": "^6.0.2",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-promise": "^7.1.0",
+    "globals": "^15.9.0",
+    "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.1",
+    "prettier": "^3.3.3",
+    "rimraf": "^4.0.0",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.5.0"
+  }
+}

@@ -1,0 +1,57 @@
+name: Run Tests with Coverage
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests with coverage
+        run: npm run test:cov && npm run test:report
+
+      - name: Generate coverage report
+        uses: MishaKav/jest-coverage-comment@main
+        with:
+          title: Test coverage report
+          summary-title: Report of coverage tests generated from GitHub Actions
+          badge-title: Coverage
+          create-new-comment: true
+          coverage-summary-path: ./coverage/coverage-summary.json
+
+      - name: Get current commit hash
+        id: get_commit
+        run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+
+      - name: Get current branch name
+        id: get_branch
+        run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Generating coverage badges
+        uses: jpb06/jest-badges-action@latest
+        with:
+          coverage-summary-path: ./coverage/coverage-summary.json
+          branches: master,develop
+          commit-message: "Badges for commit ${{ env.COMMIT_HASH }} on branch ${{ env.BRANCH_NAME }}"
+          output-folder: ./.badges
