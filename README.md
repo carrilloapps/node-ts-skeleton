@@ -1,6 +1,6 @@
 # node-ts-skeleton
 
-![GitHub Action](https://github.com/JuniorCarrillo/node-ts-skeleton/actions/workflows/test-coverage.yml/badge.svg?branch=master)
+![GitHub Action](https://github.com/carrilloapps/node-ts-skeleton/actions/workflows/test-coverage.yml/badge.svg?branch=master)
 ![Branches](./.badges/coverage-branches.svg)
 ![Functions](./.badges/coverage-functions.svg)
 ![Lines](./.badges/coverage-lines.svg)
